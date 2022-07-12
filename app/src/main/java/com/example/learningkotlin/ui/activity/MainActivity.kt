@@ -9,15 +9,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learningkotlin.R
 import com.example.learningkotlin.dao.ProductsDAO
+import com.example.learningkotlin.databinding.ActivityMainBinding
 import com.example.learningkotlin.model.Product
 import com.example.learningkotlin.ui.recyclerview.adapter.ListaProdutosAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.math.BigDecimal
+import java.util.zip.Inflater
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView;
-    val productsDAO = ProductsDAO()
+    private val productsDAO = ProductsDAO()
+    private val adapter = ListaProdutosAdapter(context = this, products = productsDAO.findAll())
 
     fun createListOfProducts(): ArrayList<Product> {
         var list: ArrayList<Product> = ArrayList()
@@ -51,9 +54,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
 
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        configRecyclerView()
+        configFab()
 
+    }
+
+    private fun configFab() {
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
 
         fab.setOnClickListener {
@@ -61,26 +71,28 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, FormularioProdutoActivity::class.java)
             startActivity(intent)
         }
-
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.i("MainActivity", "OnPause")
-    }
+//    override fun onPause() {
+//        super.onPause()
+//        Log.i("MainActivity", "OnPause")
+//    }
 
-    override fun onStop() {
-        super.onStop()
-        Log.i("MainActivity", "OnStop")
-    }
+//    override fun onStop() {
+//        super.onStop()
+//        Log.i("MainActivity", "OnStop")
+//    }
 
     override fun onResume() {
         super.onResume()
         Log.i("MainActivity", "OnResume")
         Log.i("MainActivity", "${productsDAO.findAll()}")
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.adapter = ListaProdutosAdapter(products = this.productsDAO.findAll(), context = this)
+        adapter.update(productsDAO.findAll())
+    }
 
+    private fun configRecyclerView() {
+        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }

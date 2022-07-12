@@ -9,7 +9,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/nome"
+        android:id="@+id/produto_item_nome"
         android:layout_width="0dp"
         android:textStyle="bold"
         android:layout_height="wrap_content"
@@ -20,24 +20,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/produto_item_description"
         android:layout_width="0dp"
         android:background="@drawable/back"
         android:layout_height="wrap_content"
         android:text="Laranja, uva, manga"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome"/>
+        app:layout_constraintTop_toBottomOf="@+id/produto_item_nome"/>
 
     <TextView
-        android:id="@+id/valor"
+        android:id="@+id/produto_item_valor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="19,99"
         android:background="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"/>
+        app:layout_constraintTop_toBottomOf="@+id/produto_item_description"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.example.learningkotlin.ui.recyclerview.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -10,13 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.learningkotlin.R
 import com.example.learningkotlin.model.Product
 
-class ListaProdutosAdapter(private val products: List<Product>, private val context: Context) : RecyclerView.Adapter<ListaProdutosAdapter.ViewHolder>() {
+class ListaProdutosAdapter(products: List<Product>, private val context: Context) : RecyclerView.Adapter<ListaProdutosAdapter.ViewHolder>() {
+
+    private val products = products.toMutableList()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun vincula(product: Product) {
-            val name = itemView.findViewById<TextView>(R.id.nome)
-            val description = itemView.findViewById<TextView>(R.id.description)
-            val value = itemView.findViewById<TextView>(R.id.valor)
+            val name = itemView.findViewById<TextView>(R.id.produto_item_nome)
+            val description = itemView.findViewById<TextView>(R.id.produto_item_description)
+            val value = itemView.findViewById<TextView>(R.id.produto_item_valor)
             name.text = product.name;
             description.text = product.description
             value.text = product.value.toString()
@@ -36,6 +37,12 @@ class ListaProdutosAdapter(private val products: List<Product>, private val cont
     }
 
     override fun getItemCount(): Int = products.size
+
+    fun update(products: List<Product>) {
+        this.products.clear()
+        this.products.addAll(products);
+        notifyDataSetChanged()
+    }
 
 
 }
