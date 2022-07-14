@@ -7,6 +7,8 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.learningkotlin.R
 import com.example.learningkotlin.dao.ProductsDAO
+import com.example.learningkotlin.databinding.ActivityFormularioProdutoBinding
+import com.example.learningkotlin.databinding.ActivityMainBinding
 import com.example.learningkotlin.model.Product
 import java.math.BigDecimal
 
@@ -14,10 +16,16 @@ class FormularioProdutoActivity : AppCompatActivity(R.layout.activity_formulario
 
     private val productsDAO = ProductsDAO()
 
+    private val binding by lazy {
+        Log.i("binding","initializating" )
+        ActivityFormularioProdutoBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val salvarButton: Button = findViewById(R.id.buttonSalvar)
+
+        val salvarButton: Button = binding.buttonSalvar // findViewById(R.id.buttonSalvar)
 
         salvarButton.setOnClickListener {
             val newProduct = createNewProduct()
@@ -30,9 +38,9 @@ class FormularioProdutoActivity : AppCompatActivity(R.layout.activity_formulario
     }
 
     private fun createNewProduct(): Product {
-        val nomeField: EditText = findViewById<EditText>(R.id.activity_formulario_produto_nome)
-        val descriptionField: EditText = findViewById<EditText>(R.id.activity_formulario_produto_description)
-        val valorField: EditText = findViewById<EditText>(R.id.activity_formulario_produto_valor)
+        val nomeField: EditText = binding.activityFormularioProdutoNome // findViewById<EditText>(R.id.activity_formulario_produto_nome)
+        val descriptionField: EditText = binding.activityFormularioProdutoDescription // findViewById<EditText>(R.id.activity_formulario_produto_description)
+        val valorField: EditText = binding.activityFormularioProdutoValor // findViewById<EditText>(R.id.activity_formulario_produto_valor)
 
         val nome: String = nomeField.text.toString()
         val description: String = descriptionField.text.toString()

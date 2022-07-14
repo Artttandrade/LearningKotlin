@@ -21,42 +21,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView;
     private val productsDAO = ProductsDAO()
     private val adapter = ListaProdutosAdapter(context = this, products = productsDAO.findAll())
-
-    fun createListOfProducts(): ArrayList<Product> {
-        var list: ArrayList<Product> = ArrayList()
-
-        list.add(
-            Product(
-                name = "Uva",
-                description = "Pequeno objeto doce",
-                value = BigDecimal("10.50")
-            )
-        )
-
-        list.add(
-            Product(
-                name = "Maçã",
-                description = "Crocante",
-                value = BigDecimal("2.50")
-            )
-        )
-
-        list.add(
-            Product(
-                name = "Banana",
-                description = "Cacho",
-                value = BigDecimal("10.20")
-            )
-        )
-
-        return list
+    private val binding by lazy {
+        Log.i("binding","initializating" )
+        ActivityMainBinding.inflate(layoutInflater);
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
+        //val binding = ActivityMainBinding.inflate(layoutInflater)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        Log.i("binding","On Create" )
         setContentView(binding.root)
         configRecyclerView()
         configFab()
@@ -64,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configFab() {
-        val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        val fab = binding.floatingActionButton // findViewById<FloatingActionButton>(R.id.floatingActionButton)
 
         fab.setOnClickListener {
             Log.i("MainActivity", "FAB")
@@ -91,7 +66,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configRecyclerView() {
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        Log.i("binding","configRecyclerView" )
+        recyclerView = binding.recyclerView // findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))

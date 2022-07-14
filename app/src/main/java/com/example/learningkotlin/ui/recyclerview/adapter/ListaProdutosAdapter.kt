@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learningkotlin.R
+import com.example.learningkotlin.databinding.ProductItemBinding
 import com.example.learningkotlin.model.Product
 
 class ListaProdutosAdapter(products: List<Product>, private val context: Context) : RecyclerView.Adapter<ListaProdutosAdapter.ViewHolder>() {
 
     private val products = products.toMutableList()
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(private val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun vincula(product: Product) {
             val name = itemView.findViewById<TextView>(R.id.produto_item_nome)
             val description = itemView.findViewById<TextView>(R.id.produto_item_description)
@@ -27,8 +28,8 @@ class ListaProdutosAdapter(products: List<Product>, private val context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.product_item, parent, false)
-        return ViewHolder(view)
+        val binding = ProductItemBinding.inflate(inflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
