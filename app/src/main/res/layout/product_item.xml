@@ -46,7 +46,7 @@
         android:layout_width="100dp"
         android:scaleType="centerCrop"
         android:layout_height="100dp"
-        app:srcCompat="@drawable/Sanji"
+        app:srcCompat="@drawable/sanji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
