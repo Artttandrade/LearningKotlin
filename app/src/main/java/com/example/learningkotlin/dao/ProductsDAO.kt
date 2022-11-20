@@ -6,7 +6,13 @@ import java.math.BigDecimal
 open class ProductsDAO {
 
     internal companion object {
-        private var list = mutableListOf<Product>(Product(name = "Salada de Frutas", description = "Laranja, maça e uva", value = BigDecimal("5.00")))
+        private var list = mutableListOf<Product>(
+            Product(
+                name = "Salada de Frutas",
+                description = "Laranja, maça e uva",
+                value = BigDecimal("5.00")
+            )
+        )
     }
 
 
@@ -14,7 +20,7 @@ open class ProductsDAO {
         list.add(product)
     }
 
-    fun findAll(): List<Product>{
+    fun findAll(): List<Product> {
 
         return list
 

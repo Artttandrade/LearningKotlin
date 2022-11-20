@@ -13,6 +13,7 @@
         android:layout_width="0dp"
         android:textStyle="bold"
         android:layout_marginStart="16dp"
+        android:textSize="20sp"
         android:layout_marginTop="18dp"
         android:layout_height="wrap_content"
         android:background="@drawable/back"
@@ -51,5 +52,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/produto_item_nome"/>
-    
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

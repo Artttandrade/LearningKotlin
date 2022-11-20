@@ -17,13 +17,13 @@ class FormularioProdutoActivity : AppCompatActivity(R.layout.activity_formulario
     private val productsDAO = ProductsDAO()
 
     private val binding by lazy {
-        Log.i("binding","initializating" )
+        Log.i("binding", "initializating")
         ActivityFormularioProdutoBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(binding.root)
 
         val salvarButton: Button = binding.buttonSalvar // findViewById(R.id.buttonSalvar)
 
@@ -33,14 +33,18 @@ class FormularioProdutoActivity : AppCompatActivity(R.layout.activity_formulario
 
             Log.i("FormularioProduto", "onCreate: ${productsDAO.findAll()}")
             finish()
+
         }
 
     }
 
     private fun createNewProduct(): Product {
-        val nomeField: EditText = binding.activityFormularioProdutoNome // findViewById<EditText>(R.id.activity_formulario_produto_nome)
-        val descriptionField: EditText = binding.activityFormularioProdutoDescription // findViewById<EditText>(R.id.activity_formulario_produto_description)
-        val valorField: EditText = binding.activityFormularioProdutoValor // findViewById<EditText>(R.id.activity_formulario_produto_valor)
+        val nomeField: EditText =
+            binding.activityFormularioProdutoNome // findViewById<EditText>(R.id.activity_formulario_produto_nome)
+        val descriptionField: EditText =
+            binding.activityFormularioProdutoDescription // findViewById<EditText>(R.id.activity_formulario_produto_description)
+        val valorField: EditText =
+            binding.activityFormularioProdutoValor // findViewById<EditText>(R.id.activity_formulario_produto_valor)
 
         val nome: String = nomeField.text.toString()
         val description: String = descriptionField.text.toString()
